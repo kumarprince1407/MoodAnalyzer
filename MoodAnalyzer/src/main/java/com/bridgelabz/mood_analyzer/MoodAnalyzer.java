@@ -1,5 +1,6 @@
 package com.bridgelabz.mood_analyzer;
 
+//UC 3 - Step 2: Use an enum to differentiate the mood analysis errors in the MoodAnalyzer class.
 public class MoodAnalyzer {
     private String message;
 
@@ -9,20 +10,23 @@ public class MoodAnalyzer {
     public MoodAnalyzer(String message){
         this.message=message;
     }
-    public String alalyseMood(String message){
+    public String alalyseMood(String s)throws MoodAnalysisException{
     try {
-        if (message.contains("Sad")) {
-            return "SAD";
-        } else {
-            return "HAPPY";
+        if (message==null ||message.isEmpty()) {
+            throw new MoodAnalysisException("Mood should not be null or empty.");
+        }else if(message.contains("Sad")){
+        return Mood.SAD.toString();
+        }
+        else {
+            return Mood.HAPPY.toString();
         }
     }
-    catch (Exception e){
-        return "HAPPY";
+    catch (NullPointerException e){
+        throw new MoodAnalysisException("Mood should not be null or empty.");
     }
     }
-//    public static void main(String[] args) {
-//        MoodAnalyzer moodAnalyzer1 = new MoodAnalyzer();
-//        moodAnalyzer1.alalyseMood();
-//    }
+    //enum to differentiate mood analysis errors (for UC3)
+    public enum Mood{
+        HAPPY, SAD;
+    }
 }
