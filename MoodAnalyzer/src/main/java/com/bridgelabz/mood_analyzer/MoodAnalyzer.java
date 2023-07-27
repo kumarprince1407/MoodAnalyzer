@@ -10,10 +10,14 @@ public class MoodAnalyzer {
         this.message=message;
     }
     public String alalyseMood(String message){
-
-    if(message.contains("Sad")){
-        return "SAD";
-    }else{
+    try {
+        if (message.contains("Sad")) {
+            return "SAD";
+        } else {
+            return "HAPPY";
+        }
+    }
+    catch (Exception e){
         return "HAPPY";
     }
     }
